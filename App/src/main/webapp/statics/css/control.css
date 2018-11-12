@@ -1,0 +1,13 @@
+
+#caozuo > li ul{
+	list-style: none;
+}
+
+#caozuo {
+	list-style-type:none;
+	margin:0px;
+}
+
+.table table-bordered table-striped > select {
+	width: 150px;
+}

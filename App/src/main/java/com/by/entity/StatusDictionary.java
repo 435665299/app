@@ -1,19 +1,10 @@
 package com.by.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.math.BigInteger;
+import java.util.Date;
 
-
-/**
- * The persistent class for the data_dictionary database table.
- * 
- */
-
-public class DataDictionary implements Serializable {
-	private static final long serialVersionUID = 1L;
-
-
+public class StatusDictionary implements Serializable{
 	private String id;
 
 	private BigInteger createdBy;
@@ -26,18 +17,12 @@ public class DataDictionary implements Serializable {
 
 	private Date modifyDate;
 
-	private String typeCode;
+	private String valueCode;
 
-	private String typeName;
-
-	private BigInteger valueId;
-
-
-	public DataDictionary() {
-	}
+	private String valueName;
 
 	public String getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(String id) {
@@ -45,7 +30,7 @@ public class DataDictionary implements Serializable {
 	}
 
 	public BigInteger getCreatedBy() {
-		return this.createdBy;
+		return createdBy;
 	}
 
 	public void setCreatedBy(BigInteger createdBy) {
@@ -53,7 +38,7 @@ public class DataDictionary implements Serializable {
 	}
 
 	public Date getCreationDate() {
-		return this.creationDate;
+		return creationDate;
 	}
 
 	public void setCreationDate(Date creationDate) {
@@ -61,7 +46,7 @@ public class DataDictionary implements Serializable {
 	}
 
 	public BigInteger getModifyBy() {
-		return this.modifyBy;
+		return modifyBy;
 	}
 
 	public void setModifyBy(BigInteger modifyBy) {
@@ -69,28 +54,28 @@ public class DataDictionary implements Serializable {
 	}
 
 	public Date getModifyDate() {
-		return this.modifyDate;
+		return modifyDate;
 	}
 
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
 
-	public String getTypeCode() {
-		return this.typeCode;
+	public String getValueCode() {
+		return valueCode;
 	}
 
-	public void setTypeCode(String typeCode) {
-		this.typeCode = typeCode;
+	public void setValueCode(String valueCode) {
+		this.valueCode = valueCode;
 	}
 
-	public String getTypeName() {
-		return this.typeName;
+	public String getValueName() {
+		return valueName;
 	}
 
-	public void setTypeName(String typeName) {
-		this.typeName = typeName;
+	public void setValueName(String valueName) {
+		this.valueName = valueName;
 	}
 
-
+	
 }

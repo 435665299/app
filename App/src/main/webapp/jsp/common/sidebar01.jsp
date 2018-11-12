@@ -15,7 +15,7 @@
 				<li class="submenu">
 					<a href="#"><i class="icon icon-th-list"></i> <span>APP应用管理</span> <span class="label">▼</span></a>
 					<ul>
-						<li><a href="form-common.html">APP维护</a></li>
+						<li><a href="${ctx}/toAppList">APP维护</a></li>
 					</ul>
 				</li>
 				<li class="submenu">

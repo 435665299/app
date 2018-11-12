@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>APP信息管理平台</h1>
-	<h4><a href="${ctx}/jsp/backlogin.jsp">后台管理系统 入口</a></h4>
 	<h4><a href="${ctx}/jsp/login.jsp">开发者平台 入口</a></h4>
+	<h4><a href="${ctx}/jsp/backlogin.jsp">后台管理系统 入口</a></h4>
 </body>
 </html>

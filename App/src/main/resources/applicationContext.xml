@@ -45,6 +45,7 @@
   		<property name="mapperLocations" value="classpath:com/by/dao/*Mapper.xml"></property>
   		  <!-- 别名 -->
         <property name="typeAliasesPackage" value="com.by.entity"></property>
+     	<property name="configLocation" value="classpath:mybatis-config.xml"></property>
   	</bean>
    
   	<!-- 第一种方式 -->

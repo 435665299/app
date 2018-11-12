@@ -19,7 +19,7 @@
 <body>
 	<div id="header">
 		<h1>
-			<a href="./dashboard.html">APP BMS</a>
+			<a href="${ctx}/jsp/pre/index1.jsp">APP BMS</a>
 		</h1>
 	</div>
 

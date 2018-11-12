@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.by.dao.AppCategoryDaoMapper">
+<!-- 	查询APP的状态 -->
+	<select id="queryStatus" resultType="com.by.entity.StatusDictionary">
+		select * from status_dictionary
+	</select>
+<!-- 	查询所有的所属平台 -->
+	<select id="queryFlatform" resultType="com.by.entity.DataDictionary">
+		select * from data_dictionary 
+	</select>
+<!-- 查询所有一级分类	 -->
+	<select id="queryCategoryL1" resultType="com.by.entity.AppCategory">
+		select * from app_category where categoryCode = 1
+	</select>
+<!-- 查询所有二级分类	 -->
+	<select id="queryCategoryL2" resultType="com.by.entity.AppCategory">
+		select * from app_category where categoryCode = 2
+	</select>
+<!-- 查询所有三级分类	 -->
+	<select id="queryCategoryL3" resultType="com.by.entity.AppCategory">
+		select * from app_category where categoryCode = 3
+	</select>
+
+<!-- 查询所有APP列表	 -->
+		<!-- 定义所需返回结果集 -->
+	<resultMap type="com.by.entity.AppInfo" id="appInfoMap">
+		<id column="id" property="id"/>
+		<result column="softwareName" property="softwareName"/>
+		<result column="APKName" property="APKName"/>
+		<result column="supportROM" property="supportROM"/>
+		<result column="interfaceLanguage" property="interfaceLanguage"/>
+		<result column="downloads" property="downloads"/>
+		<result column="appInfo" property="appInfo"/>
+		<result column="versionId" property="versionId"/>
+		<result column="softwareSize" property="softwareSize"/>
+		<association property="dataDictionary" javaType="com.by.entity.DataDictionary">
+			<result column="typeName" property="typeName"/>
+		</association>
+		<association property="appCategory" javaType="com.by.entity.AppCategory">
+			<result column="categoryName" property="categoryName"/>
+		</association>
+		<association property="statusDictionary" javaType="com.by.entity.StatusDictionary">
+			<result column="valueName" property="valueName"/>
+		</association>
+	</resultMap>
+		<!--查询语句 -->
+	<select id="queryAppInfo" resultMap="appInfoMap">
+		SELECT
+		a.id,a.softwareName,a.APKName,a.supportROM,a.interfaceLanguage,a.softwareSize,b.typeName,c.categoryName,d.valueName,a.downloads,a.appInfo,a.versionId
+		FROM app_info a,data_dictionary b,app_category c,status_dictionary d 
+		<where>
+			and a.categoryLevel3=c.id AND a.flatformId = b.typeCode AND a.status = d.valueCode
+		</where>
+	</select>
+				
+</mapper>

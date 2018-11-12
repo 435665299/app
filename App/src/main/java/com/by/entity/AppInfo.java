@@ -15,7 +15,6 @@ import java.math.BigInteger;
 public class AppInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-
 	private String id;
 
 	private String APKName;
@@ -29,7 +28,6 @@ public class AppInfo implements Serializable {
 	private BigInteger categoryLevel3;
 
 	private BigInteger createdBy;
-
 
 	private Date creationDate;
 
@@ -47,12 +45,9 @@ public class AppInfo implements Serializable {
 
 	private BigInteger modifyBy;
 
-
 	private Date modifyDate;
 
-
 	private Date offSaleDate;
-
 
 	private Date onSaleDate;
 
@@ -64,10 +59,15 @@ public class AppInfo implements Serializable {
 
 	private String supportROM;
 
-
 	private Date updateDate;
 
 	private BigInteger versionId;
+	
+	private DataDictionary dataDictionary;
+	
+	private AppCategory appCategory;
+	
+	private StatusDictionary statusDictionary;
 
 	public AppInfo() {
 	}
@@ -264,4 +264,30 @@ public class AppInfo implements Serializable {
 		this.versionId = versionId;
 	}
 
+	public DataDictionary getDataDictionary() {
+		return dataDictionary;
+	}
+
+	public void setDataDictionary(DataDictionary dataDictionary) {
+		this.dataDictionary = dataDictionary;
+	}
+
+	public AppCategory getAppCategory() {
+		return appCategory;
+	}
+
+	public void setAppCategory(AppCategory appCategory) {
+		this.appCategory = appCategory;
+	}
+
+	public StatusDictionary getStatusDictionary() {
+		return statusDictionary;
+	}
+
+	public void setStatusDictionary(StatusDictionary statusDictionary) {
+		this.statusDictionary = statusDictionary;
+	}
+	
+	
+	
 }

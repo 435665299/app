@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.by.dao.AppInfoDaoMapper">
+	<!-- 定义所需返回结果集 -->
+	<resultMap type="com.by.entity.AppInfo" id="appInfoMap">
+		<id column="id" property="id"/>
+		<result column="softwareName" property="softwareName"/>
+		<result column="APKName" property="APKName"/>
+		<result column="supportROM" property="supportROM"/>
+		<result column="interfaceLanguage" property="interfaceLanguage"/>
+		<result column="downloads" property="downloads"/>
+		<result column="appInfo" property="appInfo"/>
+		<result column="versionId" property="versionId"/>
+		<result column="softwareSize" property="softwareSize"/>
+		<association property="dataDictionary" javaType="com.by.entity.DataDictionary">
+			<result column="typeName" property="typeName"/>
+		</association>
+		<association property="appCategory" javaType="com.by.entity.AppCategory">
+			<result column="categoryName" property="categoryName"/>
+		</association>
+		<association property="statusDictionary" javaType="com.by.entity.StatusDictionary">
+			<result column="valueName" property="valueName"/>
+		</association>
+	</resultMap>
+
+		<!-- 根据Id查找app -->
+	<select id="selectAppInfoById" resultMap="appInfoMap">
+				SELECT
+		a.id,a.softwareName,a.APKName,a.supportROM,a.interfaceLanguage,a.softwareSize,b.typeName,c.categoryName,d.valueName,a.downloads,a.appInfo,a.versionId
+		FROM app_info a,data_dictionary b,app_category c,status_dictionary d 
+		<where>
+			and a.categoryLevel3=c.id AND a.flatformId = b.typeCode AND a.status = d.valueCode
+			<if test="id != null and id != 0">
+			and a.id = #{id}
+			</if>
+		</where>
+	</select>
+	
+		<!-- 根据条件查询app列表 -->
+	<select id="selectAppInfo" resultMap="appInfoMap">
+		SELECT
+		a.id,a.softwareName,a.APKName,a.supportROM,a.interfaceLanguage,a.softwareSize,b.typeName,c.categoryName,d.valueName,a.downloads,a.appInfo,a.versionId
+		FROM app_info a,data_dictionary b,app_category c,status_dictionary d 
+		<where>
+			and a.categoryLevel3=c.id AND a.flatformId = b.typeCode AND a.status = d.valueCode
+			<if test="softwareName != null and softwareName != '' ">
+			and a.softwareName = #{softwareName,jdbcType=VARCHAR}
+			</if>
+			<if test="status != null and status != 0 ">
+			and a.status = #{status,jdbcType=BIGINT}
+			</if>
+			<if test="flatformId != null and flatformId != 0 ">
+			and a.flatformId = #{flatformId,jdbcType=BIGINT}
+			</if>
+			<if test="categoryLevel1 != null and categoryLevel1 != 0 ">
+			and a.categoryLevel1 = #{categoryLevel1,jdbcType=BIGINT}
+			</if>
+			<if test="categoryLevel2 != null and categoryLevel2 != 0 ">
+			and a.categoryLevel2 = #{categoryLevel2,jdbcType=BIGINT}
+			</if>
+			<if test="categoryLevel3 != null and categoryLevel3 != 0 ">
+			and a.categoryLevel3 = #{categoryLevel3,jdbcType=BIGINT}
+			</if>
+		</where>
+	</select>
+	
+		<!-- 	删除选定的app -->
+	<delete id="deleteAppInfo" parameterType="int">
+		delete from app_info where id = #{id,jdbcType=BIGINT}
+	</delete>
+		
+		<!-- 	修改选定的app信息 -->
+	<update id="updateAppInfo">
+		update app_info 
+		<set>
+			<if test="softwareName != null and softwareName != ''">
+				softwareName = #{softwareName}
+			</if>
+			<if test="supportROM != null and supportROM != ''">
+				supportROM = #{supportROM}
+			</if>
+			<if test="interfaceLanguage != null and interfaceLanguage != ''">
+				interfaceLanguage = #{interfaceLanguage}
+			</if>
+			<if test="softwareSize != null and softwareSize != 0">
+				softwareSize = #{softwareSize}
+			</if>
+			<if test="downloads != null and downloads != 0">
+				downloads = #{downloads}
+			</if>
+			<if test="flatformId != null and flatformId != 0">
+				flatformId = #{flatformId}
+			</if>
+			<if test="categoryLevel1 != null and categoryLevel1 != 0">
+				categoryLevel1 = #{categoryLevel1}
+			</if>
+			<if test="categoryLevel2 != null and categoryLevel2 != 0">
+				categoryLevel2 = #{categoryLevel2}
+			</if>
+			<if test="categoryLevel3 != null and categoryLevel3 != 0">
+				categoryLevel3 = #{categoryLevel3}
+			</if>
+			<if test="appInfo != null and appInfo != ''">
+				appInfo = #{appInfo}
+			</if>
+			where id = #{id}
+		</set>
+	</update>		
+</mapper>
