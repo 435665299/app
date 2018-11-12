@@ -30,8 +30,6 @@ public class DataDictionary implements Serializable {
 
 	private String typeName;
 
-	private BigInteger valueId;
-
 
 	public DataDictionary() {
 	}
