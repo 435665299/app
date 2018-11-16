@@ -12,7 +12,7 @@ import com.by.dao.AppInfoDaoMapper;
 import com.by.entity.AppInfo;
 
 @Service
-public class AppInfoService {
+public class AppInfoService{
 	@Autowired
 	private AppInfoDaoMapper appInfoDaoMapper;
 	
@@ -40,5 +40,10 @@ public class AppInfoService {
 		appInfoDaoMapper.updateAppInfo(id, softwareName, supportROM, interfaceLanguage, softwareSize, downloads, flatformId, categoryLevel1, categoryLevel2, categoryLevel3, appInfo);		
 				return true;
 		
+	}
+	
+	public boolean updateStatus(Integer id,Integer status){
+		appInfoDaoMapper.updateStatus(id, status);
+		return true;		
 	}
 }

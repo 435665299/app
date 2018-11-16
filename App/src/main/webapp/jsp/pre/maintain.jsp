@@ -134,13 +134,31 @@ class="skin-color" />
 												点击操作 <span class="caret"></span>
 											</button>
 												<ul class="dropdown-menu" role="menu">													
-													<li><a href="invoice.html">新增版本</a></li>
-													<li><a href="invoice.html">修改版本</a></li>
+													<li><a href="${ctx}/selectversion?appId=${appInfo.id}">新增版本</a></li>
+													<li><a href="#">修改版本</a></li>
 													<li><a href="${ctx}/selectAppById?id=${appInfo.id}">修改</a></li>
-													<li><a href="invoice.html">查看</a></li>
-													<li><a id="appDelete" href="${ctx}/deleteApp?id=${appInfo.id}">删除</a></li>
-													<li><a href="invoice.html">上架</a></li>
-													<li><a href="invoice.html">下架</a></li>
+													<li><a href="${ctx}/lookApp?id=${appInfo.id}&appId=${appInfo.id}">查看</a></li>
+													<li><a class="appdelete" href="${ctx}/deleteApp?id=${appInfo.id}">删除</a></li>
+													<li>
+														<c:choose>
+															<c:when test="${appInfo.statusDictionary.valueName == '审核已通过' || appInfo.statusDictionary.valueName == '已下架'}">
+																<a class="appup" href="${ctx}/updateStatus?id=${appInfo.id}&status=4">上架</a>
+															</c:when>
+															<c:otherwise>
+																<a href="javascript:return false;" style="opacity: 0.2">上架</a>
+															</c:otherwise>
+														</c:choose>
+													</li>
+													<li>
+														<c:choose>
+															<c:when test="${appInfo.statusDictionary.valueName == '已上架' }">
+																<a class="appdown" href="${ctx}/updateStatus?id=${appInfo.id}&status=5">下架</a>
+															</c:when>
+															<c:otherwise>
+																<a href="javascript:return false;" style="opacity: 0.2">下架</a>
+															</c:otherwise>
+														</c:choose>
+													</li>
 												</ul>
 											</td>
 										</tr>

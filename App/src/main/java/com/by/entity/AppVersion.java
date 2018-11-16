@@ -42,6 +42,16 @@ public class AppVersion implements Serializable {
 	private String versionNo;
 
 	private BigDecimal versionSize;
+	
+	private AppInfo appInfo;
+
+	public AppInfo getAppInfo() {
+		return appInfo;
+	}
+
+	public void setAppInfo(AppInfo appInfo) {
+		this.appInfo = appInfo;
+	}
 
 	public AppVersion() {
 	}

@@ -48,4 +48,10 @@ public interface AppInfoDaoMapper {
 			@Param("downloads")Integer downloads,@Param("flatformId")Integer flatformId,
 			@Param("categoryLevel1")Integer categoryLevel1,@Param("categoryLevel2")Integer categoryLevel2,
 			@Param("categoryLevel3")Integer categoryLevel3,@Param("appInfo")String appInfo);
+	
+	/**
+	 * ÐÞ¸ÄAppÉóºË×´Ì¬
+	 */
+	
+	public boolean updateStatus(@Param("id")Integer id,@Param("status") Integer status);
 }

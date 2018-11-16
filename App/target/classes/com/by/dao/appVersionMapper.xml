@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.by.dao.AppVersionDaoMapper">
+	
+	<resultMap type="com.by.entity.AppVersion" id="appVersionMap">
+		<id column="id" property="id"/>
+		<result column="versionNo" property="versionNo"/>
+		<result column="versionSize" property="versionSize"/>
+		<result column="publishStatus" property="publishStatus"/>
+		<result column="apkFileName" property="apkFileName"/>
+		<result column="creationDate" property="creationDate"/>
+		<result column="versionInfo" property="versionInfo"/>
+		<association property="appInfo" javaType="com.by.entity.AppInfo">
+			<result column="softwareName" property="softwareName"/>
+		</association>
+	</resultMap>
+	
+	<!-- 	查询app历史版本列表 -->
+	<select id="selectAppVersion" resultMap="appVersionMap">
+		SELECT a.id,b.softwareName,a.versionNo,a.versionSize,a.publishStatus,a.apkFileName,a.creationDate,a.versionInfo
+FROM app_version a,app_info b
+	<where>
+			and a.appId = b.id
+		<if test="appId != null">
+			and a.appId = #{appId}
+		</if>
+	</where>
+	ORDER BY a.creationDate DESC
+	</select>
+	
+	<!-- 	插入新增版本	 -->	
+	<insert id="addAppVersion">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			<!-- SELECT LAST_INSERT_ID()：得到刚insert到数据表中的记录的主键值，只适用于自增主键 -->
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+
+		insert into app_version(versionNo,appId,versionSize,versionInfo,apkFileName,publishStatus)
+		values(#{versionNo},#{appId},#{versionSize},#{versionInfo},#{apkFileName},1)
+	</insert>
+	
+	<!--更新app信息表版本id-->
+	<update id="updateVersionId">
+		update app_info
+		<set>
+			<if test="versionNo != null">
+				versionId = #{versionNo}			
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+</mapper>

@@ -77,36 +77,46 @@
 		update app_info 
 		<set>
 			<if test="softwareName != null and softwareName != ''">
-				softwareName = #{softwareName}
+				softwareName = #{softwareName},
 			</if>
 			<if test="supportROM != null and supportROM != ''">
-				supportROM = #{supportROM}
+				supportROM = #{supportROM},
 			</if>
 			<if test="interfaceLanguage != null and interfaceLanguage != ''">
-				interfaceLanguage = #{interfaceLanguage}
+				interfaceLanguage = #{interfaceLanguage},
 			</if>
 			<if test="softwareSize != null and softwareSize != 0">
-				softwareSize = #{softwareSize}
+				softwareSize = #{softwareSize},
 			</if>
-			<if test="downloads != null and downloads != 0">
-				downloads = #{downloads}
+			<if test="downloads != null">
+				downloads = #{downloads},
 			</if>
 			<if test="flatformId != null and flatformId != 0">
-				flatformId = #{flatformId}
+				flatformId = #{flatformId},
 			</if>
 			<if test="categoryLevel1 != null and categoryLevel1 != 0">
-				categoryLevel1 = #{categoryLevel1}
+				categoryLevel1 = #{categoryLevel1},
 			</if>
 			<if test="categoryLevel2 != null and categoryLevel2 != 0">
-				categoryLevel2 = #{categoryLevel2}
+				categoryLevel2 = #{categoryLevel2},
 			</if>
 			<if test="categoryLevel3 != null and categoryLevel3 != 0">
-				categoryLevel3 = #{categoryLevel3}
+				categoryLevel3 = #{categoryLevel3},
 			</if>
 			<if test="appInfo != null and appInfo != ''">
 				appInfo = #{appInfo}
 			</if>
 			where id = #{id}
 		</set>
-	</update>		
+	</update>
+	
+	<!-- 	修改审核状态信息		 -->
+	<update id="updateStatus">
+		update app_info
+		<set>
+			status = #{status}
+		</set>
+		where id = #{id} 
+	</update>
+		
 </mapper>
